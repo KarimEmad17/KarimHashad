@@ -1,0 +1,1356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Karim Hashad — Unity Developer | VR, AR & Multiplayer Specialist</title>
+  <meta name="description" content="Karim Hashad — Unity Developer with 2+ years shipping VR/AR and multiplayer games. Published on Google Play. Photon PUN2, XR Interaction Toolkit, Meta Quest, ASP.NET Core." />
+  <meta name="keywords" content="Unity Developer, VR Developer, AR Developer, XR Developer, Multiplayer Game Developer, Photon Networking, Meta Quest, AR Foundation, C# Developer, Cairo Egypt" />
+  <meta name="author" content="Karim Hashad" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Karim Hashad — Unity Developer | VR, AR & Multiplayer" />
+  <meta property="og:description" content="Unity developer shipping VR, AR, and multiplayer experiences — Meta Quest, Google Play, Unity 6 prototypes." />
+  <meta property="og:image" content="assets/battlefield-poster.jpg" />
+
+  <!-- JSON-LD structured data -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org","@type":"Person","name":"Karim Hashad",
+    "jobTitle":"Unity Developer — VR / AR & Multiplayer Specialist",
+    "email":"mailto:kareememad612005@gmail.com",
+    "knowsAbout":["Unity Engine","VR Development","AR Development","XR Interaction Toolkit","Photon Networking","Meta Quest","AR Foundation","C#","ASP.NET Core"],
+    "alumniOf":{"@type":"CollegeOrUniversity","name":"Benha University"}
+  }
+  </script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ─── RESET & BASE ───────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: #09090f;
+      color: #f1f5f9;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+    ul { list-style: none; }
+    img, video { display: block; max-width: 100%; }
+    button { cursor: pointer; font-family: inherit; border: none; background: none; }
+
+    /* ─── CSS CUSTOM PROPERTIES ──────────────────────────── */
+    :root {
+      --cyan:    #00d4ff;
+      --cyan-dim: rgba(0,212,255,.12);
+      --violet:  #7b2fff;
+      --red:     #ff4d4d;
+      --amber:   #ffb020;
+      --green:   #00ff88;
+      --bg:      #09090f;
+      --bg-alt:  #07070d;
+      --card:    #10101a;
+      --border:  #1e2235;
+      --muted:   #475569;
+      --text:    #94a3b8;
+      --mono:    'JetBrains Mono', 'Courier New', monospace;
+      --radius:  12px;
+    }
+
+    /* ─── UTILITY ────────────────────────────────────────── */
+    .mono { font-family: var(--mono); }
+    .sr-only { position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0; }
+
+    /* ─── SKIP LINK ──────────────────────────────────────── */
+    .skip-link {
+      position: fixed; top: -100px; left: 1rem; z-index: 9999;
+      background: var(--cyan); color: #000; font-family: var(--mono);
+      padding: .5rem 1rem; border-radius: 6px; font-size: .85rem; font-weight: 700;
+      transition: top .2s;
+    }
+    .skip-link:focus { top: 1rem; }
+
+    /* ─── SCROLLBAR ──────────────────────────────────────── */
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: #1e2235; border-radius: 3px; }
+
+    /* ─── SELECTION ──────────────────────────────────────── */
+    ::selection { background: rgba(0,212,255,.25); color: #fff; }
+
+    /* ─── FOCUS VISIBLE ──────────────────────────────────── */
+    :focus-visible {
+      outline: 2px solid var(--cyan);
+      outline-offset: 3px;
+      border-radius: 4px;
+    }
+
+    /* ─── ANIMATED GRID BACKGROUND ───────────────────────── */
+    .grid-bg {
+      position: absolute; inset: 0; pointer-events: none;
+      background-image:
+        linear-gradient(rgba(0,212,255,.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,212,255,.08) 1px, transparent 1px);
+      background-size: 56px 56px;
+      transition: transform .12s ease-out;
+    }
+
+    /* ─── NAVIGATION ─────────────────────────────────────── */
+    #nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 1.4rem 0;
+      transition: background .4s, border-color .4s, padding .4s;
+    }
+    #nav.scrolled {
+      background: rgba(9,9,15,.88);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(0,212,255,.15);
+      padding: .8rem 0;
+    }
+    .nav-inner {
+      max-width: 1100px; margin: 0 auto; padding: 0 1.5rem;
+      display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+    }
+    .nav-logo {
+      font-family: var(--mono); font-weight: 700; font-size: 1.1rem;
+      letter-spacing: .12em; color: var(--cyan);
+    }
+    .nav-logo span { color: #fff; }
+    .nav-links {
+      display: flex; gap: 2rem; align-items: center;
+    }
+    .nav-links a {
+      font-family: var(--mono); font-size: .78rem; letter-spacing: .08em;
+      color: var(--text); transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--cyan); }
+    .nav-ctas { display: flex; gap: .75rem; align-items: center; }
+    .btn-ghost {
+      font-family: var(--mono); font-size: .78rem; color: var(--text);
+      transition: color .2s; letter-spacing: .06em;
+    }
+    .btn-ghost:hover { color: #fff; }
+    .btn-outline {
+      font-family: var(--mono); font-size: .78rem;
+      border: 1px solid var(--cyan); color: var(--cyan);
+      padding: .45rem 1rem; border-radius: 6px;
+      transition: background .2s; letter-spacing: .06em;
+    }
+    .btn-outline:hover { background: var(--cyan-dim); }
+
+    /* Mobile menu toggle */
+    .nav-toggle {
+      display: none; flex-direction: column; gap: 5px;
+      padding: .4rem; color: var(--text);
+    }
+    .nav-toggle span {
+      display: block; width: 22px; height: 2px;
+      background: currentColor; border-radius: 2px;
+      transition: transform .3s, opacity .3s;
+    }
+    .nav-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-toggle.open span:nth-child(2) { opacity: 0; }
+    .nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    .nav-mobile {
+      display: none; flex-direction: column;
+      background: rgba(9,9,15,.96); border-top: 1px solid rgba(0,212,255,.1);
+      padding: 1rem 1.5rem 1.5rem;
+    }
+    .nav-mobile.open { display: flex; }
+    .nav-mobile a {
+      font-family: var(--mono); font-size: .9rem; color: var(--text);
+      padding: .75rem 0; border-bottom: 1px solid var(--border);
+      transition: color .2s;
+    }
+    .nav-mobile a:hover { color: var(--cyan); }
+    .nav-mobile-ctas {
+      display: flex; gap: .75rem; margin-top: 1.25rem;
+    }
+    .nav-mobile-ctas a {
+      flex: 1; text-align: center; padding: .65rem 0;
+      border-radius: 6px; font-family: var(--mono); font-size: .85rem;
+      border-bottom: none !important;
+    }
+    .nav-mobile-ctas .m-resume {
+      border: 1px solid var(--border); color: var(--text);
+    }
+    .nav-mobile-ctas .m-contact {
+      background: var(--cyan); color: #000; font-weight: 700;
+    }
+
+    @media (max-width: 768px) {
+      .nav-links, .nav-ctas { display: none; }
+      .nav-toggle { display: flex; }
+    }
+
+    /* ─── SECTION WRAPPER ────────────────────────────────── */
+    .section { padding: 7rem 1.5rem; }
+    .section-alt { background: var(--bg-alt); }
+    .container { max-width: 1100px; margin: 0 auto; }
+
+    /* ─── SECTION LABEL ──────────────────────────────────── */
+    .section-label {
+      display: flex; align-items: center; gap: 1rem; margin-bottom: .75rem;
+    }
+    .section-label span {
+      font-family: var(--mono); font-size: .7rem; letter-spacing: .25em;
+      text-transform: uppercase; color: var(--cyan); white-space: nowrap;
+    }
+    .section-label::after {
+      content: ''; flex: 1; height: 1px;
+      background: linear-gradient(to right, rgba(0,212,255,.25), transparent);
+    }
+
+    /* ─── SECTION HEADING ────────────────────────────────── */
+    .section-heading {
+      font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 800;
+      color: #fff; line-height: 1.15; margin-bottom: .75rem;
+    }
+    .section-sub {
+      color: var(--text); max-width: 520px;
+      line-height: 1.7; margin-bottom: 3.5rem;
+    }
+
+    /* ─── REVEAL ANIMATION ───────────────────────────────── */
+    .reveal {
+      opacity: 0; transform: translateY(28px);
+      transition: opacity .65s ease, transform .65s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ─── HERO ───────────────────────────────────────────── */
+    #hero {
+      position: relative; min-height: 100svh;
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden; padding: 0 1.5rem;
+    }
+    .hero-orb {
+      position: absolute; border-radius: 50%; pointer-events: none; filter: blur(80px);
+    }
+    .hero-orb-1 { width: 420px; height: 420px; background: var(--cyan); opacity: .07; top: 18%; left: 18%; }
+    .hero-orb-2 { width: 300px; height: 300px; background: var(--violet); opacity: .09; bottom: 20%; right: 15%; }
+
+    .hero-inner {
+      position: relative; z-index: 2; text-align: center; padding-top: 5rem;
+    }
+    .hero-badge {
+      font-family: var(--mono); font-size: .72rem; letter-spacing: .28em;
+      text-transform: uppercase; color: var(--cyan);
+      margin-bottom: 1.5rem; display: block;
+    }
+    .hero-name {
+      font-size: clamp(3.2rem, 10vw, 7rem); font-weight: 900;
+      line-height: .95; margin-bottom: .5rem; letter-spacing: -.02em;
+    }
+    .hero-name-solid { display: block; color: #fff; }
+    .hero-name-outline {
+      display: block; color: transparent;
+      -webkit-text-stroke: 1px rgba(0,212,255,.55);
+    }
+    .hero-title {
+      font-family: var(--mono); font-size: clamp(.75rem, 1.6vw, 1rem);
+      letter-spacing: .18em; text-transform: uppercase;
+      color: var(--cyan); font-weight: 500; margin-bottom: 1.4rem;
+    }
+    .hero-tagline {
+      font-size: clamp(1rem, 2.5vw, 1.3rem); color: rgba(255,255,255,.7);
+      max-width: 580px; margin: 0 auto 1rem; line-height: 1.65;
+    }
+    .hero-tagline strong { color: #fff; font-weight: 600; }
+    .hero-tagline-sub { color: var(--text); font-size: .95em; }
+    .hero-stats {
+      display: flex; justify-content: center; gap: 2.5rem;
+      margin: 2rem 0; flex-wrap: wrap;
+    }
+    .hero-stat-val {
+      font-family: var(--mono); font-size: 1.9rem; font-weight: 700; color: var(--cyan);
+    }
+    .hero-stat-lbl {
+      font-size: .7rem; color: var(--muted); text-transform: uppercase;
+      letter-spacing: .1em; margin-top: .2rem;
+    }
+    .hero-ctas {
+      display: flex; gap: .75rem; justify-content: center;
+      flex-wrap: wrap; margin-top: .5rem;
+    }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: .5rem;
+      background: var(--cyan); color: #000; font-weight: 700;
+      padding: .9rem 2rem; border-radius: 8px; font-size: .95rem;
+      transition: background .2s, box-shadow .2s; letter-spacing: .02em;
+    }
+    .btn-primary:hover {
+      background: #33ddff;
+      box-shadow: 0 0 28px rgba(0,212,255,.4);
+    }
+    .btn-secondary {
+      display: inline-flex; align-items: center; gap: .5rem;
+      border: 1px solid var(--border); color: var(--text); font-family: var(--mono);
+      padding: .9rem 2rem; border-radius: 8px; font-size: .88rem;
+      transition: color .2s, border-color .2s;
+    }
+    .btn-secondary:hover { color: #fff; border-color: #475569; }
+    .btn-link {
+      display: inline-flex; align-items: center; gap: .4rem;
+      color: var(--text); font-family: var(--mono); font-size: .88rem;
+      padding: .9rem 1rem; transition: color .2s;
+    }
+    .btn-link:hover { color: #fff; }
+    .hero-scroll {
+      display: flex; flex-direction: column; align-items: center;
+      gap: .5rem; margin-top: 3.5rem; color: var(--muted);
+    }
+    .hero-scroll span { font-family: var(--mono); font-size: .65rem; letter-spacing: .25em; text-transform: uppercase; }
+    .hero-scroll-line {
+      width: 1px; height: 48px;
+      background: linear-gradient(to bottom, var(--muted), transparent);
+      animation: scrollPulse 2s ease-in-out infinite;
+    }
+    @keyframes scrollPulse { 0%,100%{opacity:.4} 50%{opacity:1} }
+
+    /* ─── ABOUT ──────────────────────────────────────────── */
+    .about-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start;
+    }
+    .about-heading {
+      font-size: clamp(1.6rem, 3.5vw, 2.4rem); font-weight: 800;
+      color: #fff; line-height: 1.2; margin-bottom: 1.75rem;
+    }
+    .about-heading em { font-style: normal; color: var(--cyan); }
+    .about-text p { color: var(--text); line-height: 1.8; margin-bottom: 1rem; font-size: .97rem; }
+    .about-text p:last-child { margin-bottom: 0; }
+
+    .facts-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 2rem;
+    }
+    .facts-card h3 { font-size: 1rem; color: #fff; font-weight: 600; margin-bottom: 1.5rem; }
+    .fact-row {
+      display: flex; justify-content: space-between; gap: 1rem;
+      border-bottom: 1px solid var(--border); padding-bottom: .85rem; margin-bottom: .85rem;
+    }
+    .fact-row:last-of-type { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+    .fact-label { font-family: var(--mono); font-size: .78rem; color: var(--muted); }
+    .fact-value { font-size: .88rem; color: #e2e8f0; font-weight: 500; text-align: right; }
+    .facts-links {
+      display: flex; gap: .6rem; flex-wrap: wrap; margin-top: 1.5rem; padding-top: 1.25rem;
+      border-top: 1px solid var(--border);
+    }
+    .facts-link {
+      flex: 1; min-width: 80px; text-align: center;
+      border: 1px solid var(--border); color: var(--text);
+      padding: .55rem .5rem; border-radius: 6px; font-family: var(--mono);
+      font-size: .75rem; transition: color .2s, border-color .2s;
+    }
+    .facts-link:hover { color: #fff; border-color: #475569; }
+    .facts-link.cyan { border-color: rgba(0,212,255,.35); color: var(--cyan); }
+    .facts-link.cyan:hover { background: var(--cyan-dim); }
+
+    @media (max-width: 768px) { .about-grid { grid-template-columns: 1fr; gap: 2.5rem; } }
+
+    /* ─── SKILLS ─────────────────────────────────────────── */
+    .skills-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem;
+    }
+    @media (max-width: 640px) { .skills-grid { grid-template-columns: 1fr; } }
+
+    .skill-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 1.75rem;
+      transition: border-color .25s;
+    }
+    .skill-card.featured { border-color: rgba(0,212,255,.25); }
+    .skill-card:hover { border-color: rgba(0,212,255,.4); }
+    .skill-card-header {
+      display: flex; align-items: center; gap: .75rem; margin-bottom: 1.75rem;
+    }
+    .skill-card-icon { font-size: 1.4rem; line-height: 1; }
+    .skill-card-title { color: #fff; font-weight: 600; font-size: .95rem; }
+    .skill-badge {
+      margin-left: auto; font-family: var(--mono); font-size: .65rem;
+      text-transform: uppercase; letter-spacing: .1em;
+      color: var(--cyan); background: rgba(0,212,255,.1);
+      padding: .25rem .55rem; border-radius: 4px;
+    }
+    .skill-items { display: flex; flex-direction: column; gap: 1.1rem; }
+    .skill-item-name {
+      display: flex; justify-content: space-between;
+      font-size: .84rem; color: #cbd5e1; margin-bottom: .4rem;
+    }
+    .skill-item-pct { font-family: var(--mono); font-size: .72rem; color: var(--muted); }
+    .skill-bar-track {
+      height: 3px; background: rgba(255,255,255,.07); border-radius: 2px; overflow: hidden;
+    }
+    .skill-bar-fill {
+      height: 100%; width: 0; border-radius: 2px;
+      background: linear-gradient(to right, var(--cyan), rgba(0,212,255,.6));
+      transition: width 1s ease;
+    }
+    [role="progressbar"]:focus-visible { outline: 2px solid var(--cyan); }
+
+    /* ─── PROJECTS ───────────────────────────────────────── */
+    .projects-list { display: flex; flex-direction: column; gap: 2rem; }
+
+    .proj-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 16px; overflow: hidden;
+      transition: border-color .25s, box-shadow .25s;
+    }
+    .proj-card:hover { border-color: #2a2e42; }
+
+    /* Video player */
+    .proj-media {
+      position: relative; aspect-ratio: 16/9;
+      background: #060610; border-bottom: 1px solid var(--border);
+      overflow: hidden;
+    }
+    .proj-media video, .proj-media img {
+      width: 100%; height: 100%; object-fit: cover;
+    }
+    
+      width: 100%; height: 100%; display: flex; align-items: center;
+      justify-content: center; flex-direction: column; gap: .5rem;
+      color: #2a2e42;
+    }
+    .proj-media-placeholder p { font-family: var(--mono); font-size: .72rem; color: #2a2e42; }
+    .proj-media-badge {
+      position: absolute; top: .75rem; right: .75rem;
+      background: rgba(0,0,0,.6); backdrop-filter: blur(6px);
+      font-family: var(--mono); font-size: .65rem; color: #fff;
+      padding: .3rem .65rem; border-radius: 4px;
+      display: flex; align-items: center; gap: .45rem;
+    }
+    .proj-media-badge .dot {
+      width: 6px; height: 6px; border-radius: 50%; background: var(--cyan);
+    }
+    .proj-accent-bar { height: 3px; }
+
+    /* Kitchen Chaos — side-by-side title screenshot + gameplay video */
+    .kc-media-strip {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border-bottom: 1px solid var(--border);
+      background: #060610;
+    }
+    .kc-screenshot {
+      position: relative; overflow: hidden;
+      border-right: 1px solid var(--border);
+    }
+    .kc-screenshot img {
+      width: 100%; height: 100%; object-fit: cover;
+      display: block;
+    }
+    .kc-video {
+      aspect-ratio: unset !important;
+      border-bottom: none !important;
+    }
+    @media (max-width: 600px) {
+      .kc-media-strip { grid-template-columns: 1fr; }
+      .kc-screenshot { border-right: none; border-bottom: 1px solid var(--border); max-height: 200px; }
+    }
+
+    .proj-body { padding: 1.75rem 2rem; }
+    @media (max-width: 480px) { .proj-body { padding: 1.25rem 1.25rem; } }
+
+    .proj-meta {
+      display: flex; align-items: flex-start; justify-content: space-between;
+      gap: 1rem; flex-wrap: wrap; margin-bottom: .85rem;
+    }
+    .proj-role {
+      font-family: var(--mono); font-size: .68rem; letter-spacing: .2em;
+      text-transform: uppercase; color: var(--muted); margin-bottom: .35rem;
+    }
+    .proj-title { font-size: 1.2rem; font-weight: 700; color: #fff; transition: color .2s; }
+    .proj-card:hover .proj-title { color: var(--cyan); }
+    .proj-links { display: flex; gap: .5rem; flex-shrink: 0; margin-top: .2rem; }
+    .proj-link {
+      font-family: var(--mono); font-size: .7rem; color: var(--text);
+      border: 1px solid var(--border); padding: .3rem .7rem; border-radius: 5px;
+      transition: color .2s, border-color .2s;
+    }
+    .proj-link:hover { color: #fff; border-color: #475569; }
+
+    .proj-tagline { font-size: .88rem; color: var(--muted); font-style: italic; margin-bottom: 1rem; }
+    .proj-overview { font-size: .9rem; color: var(--text); line-height: 1.75; margin-bottom: 1.25rem; }
+
+    .proj-tech { display: flex; flex-wrap: wrap; gap: .45rem; margin-bottom: 1.25rem; }
+    .proj-pill {
+      font-family: var(--mono); font-size: .68rem;
+      padding: .28rem .75rem; border-radius: 100px; border: 1px solid;
+    }
+
+    .proj-expand-btn {
+      font-family: var(--mono); font-size: .8rem; color: var(--muted);
+      display: flex; align-items: center; gap: .4rem;
+      transition: color .2s; padding: .2rem 0;
+    }
+    .proj-expand-btn:hover { color: var(--cyan); }
+    .proj-expand-btn .arrow { transition: transform .25s; }
+    .proj-expand-btn.open .arrow { transform: rotate(180deg); }
+
+    .proj-details {
+      display: none; border-top: 1px solid var(--border);
+      padding-top: 1.5rem; margin-top: 1.25rem;
+    }
+    .proj-details.open { display: block; }
+    .proj-details-grid { display: grid; gap: 1.5rem; }
+    @media (min-width: 640px) { .proj-details-grid { grid-template-columns: repeat(3,1fr); } }
+
+    .proj-detail-section h4 {
+      font-size: .78rem; font-weight: 600; color: #fff;
+      text-transform: uppercase; letter-spacing: .1em; margin-bottom: .85rem;
+      font-family: var(--mono);
+    }
+    .proj-detail-section ul { display: flex; flex-direction: column; gap: .6rem; }
+    .proj-detail-section li {
+      display: flex; gap: .6rem; font-size: .83rem;
+      color: var(--text); line-height: 1.6;
+    }
+    .proj-detail-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      flex-shrink: 0; margin-top: .45rem;
+    }
+
+    /* ─── EXPERIENCE ─────────────────────────────────────── */
+    .exp-timeline { position: relative; padding-left: 1.5rem; }
+    .exp-timeline::before {
+      content: ''; position: absolute; left: 0; top: 0; bottom: 0;
+      width: 1px; background: linear-gradient(to bottom, var(--cyan), rgba(0,212,255,.1));
+    }
+    .exp-item {
+      position: relative; padding-left: 2rem; margin-bottom: 3rem;
+    }
+    .exp-item:last-child { margin-bottom: 0; }
+    .exp-dot {
+      position: absolute; left: -2rem; top: .4rem;
+      width: 11px; height: 11px; border-radius: 50%;
+      background: var(--cyan); border: 2px solid var(--bg);
+      box-shadow: 0 0 12px rgba(0,212,255,.5);
+    }
+    .exp-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 1.75rem 2rem;
+      transition: border-color .25s;
+    }
+    .exp-card:hover { border-color: rgba(0,212,255,.25); }
+    .exp-header {
+      display: flex; justify-content: space-between; align-items: flex-start;
+      gap: 1rem; flex-wrap: wrap; margin-bottom: .3rem;
+    }
+    .exp-role { font-size: 1.05rem; font-weight: 700; color: #fff; }
+    .exp-duration {
+      font-family: var(--mono); font-size: .7rem; color: var(--cyan);
+      background: rgba(0,212,255,.1); padding: .25rem .65rem; border-radius: 4px; white-space: nowrap;
+    }
+    .exp-company { font-family: var(--mono); font-size: .78rem; color: var(--muted); margin-bottom: 1.25rem; }
+    .exp-highlights { display: flex; flex-direction: column; gap: .75rem; }
+    .exp-highlight {
+      display: flex; gap: .75rem; font-size: .87rem; color: var(--text); line-height: 1.65;
+    }
+    .exp-bullet { color: var(--cyan); flex-shrink: 0; margin-top: .15rem; font-size: 1rem; }
+
+    /* ─── EDUCATION ──────────────────────────────────────── */
+    .edu-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 16px; padding: 2.5rem; max-width: 720px;
+      display: flex; gap: 1.5rem; align-items: flex-start;
+    }
+    @media (max-width: 480px) { .edu-card { flex-direction: column; padding: 1.5rem; } }
+
+    .edu-icon {
+      width: 56px; height: 56px; flex-shrink: 0;
+      background: rgba(0,212,255,.08); border: 1px solid rgba(0,212,255,.2);
+      border-radius: 12px; display: flex; align-items: center;
+      justify-content: center; font-size: 1.5rem;
+    }
+    .edu-degree { font-size: 1.05rem; font-weight: 700; color: #fff; margin-bottom: .3rem; }
+    .edu-faculty { font-family: var(--mono); font-size: .78rem; color: var(--cyan); margin-bottom: .25rem; }
+    .edu-meta { font-size: .83rem; color: var(--muted); margin-bottom: 1.25rem; }
+    .edu-courses-label {
+      font-size: .75rem; font-weight: 600; color: var(--text);
+      text-transform: uppercase; letter-spacing: .1em; margin-bottom: .75rem;
+    }
+    .edu-courses { display: flex; flex-wrap: wrap; gap: .5rem; }
+    .edu-course {
+      font-family: var(--mono); font-size: .72rem; color: var(--text);
+      background: rgba(255,255,255,.04); border: 1px solid var(--border);
+      padding: .3rem .8rem; border-radius: 100px;
+    }
+
+    /* ─── CONTACT ────────────────────────────────────────── */
+    .contact-inner { text-align: center; max-width: 620px; margin: 0 auto; }
+    .contact-heading {
+      font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 800;
+      color: #fff; line-height: 1.1; margin-bottom: 1rem;
+    }
+    .contact-heading em { font-style: normal; color: var(--cyan); }
+    .contact-sub { color: var(--text); line-height: 1.75; margin-bottom: 2.5rem; font-size: .97rem; }
+    .contact-ctas { display: flex; gap: .75rem; justify-content: center; flex-wrap: wrap; margin-bottom: 2rem; }
+    .contact-email-hint { font-family: var(--mono); font-size: .72rem; color: var(--muted); margin-bottom: 2rem; }
+    .contact-social {
+      display: flex; justify-content: center; gap: 1.75rem; flex-wrap: wrap;
+    }
+    .social-link {
+      display: flex; align-items: center; gap: .5rem;
+      font-family: var(--mono); font-size: .8rem; color: var(--muted);
+      transition: color .2s;
+    }
+    .social-link:hover { color: #fff; }
+    .social-link svg { width: 16px; height: 16px; }
+
+    /* ─── FOOTER ─────────────────────────────────────────── */
+    footer {
+      border-top: 1px solid var(--border); padding: 2rem 1.5rem;
+    }
+    .footer-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: flex; justify-content: space-between; align-items: center;
+      gap: 1rem; flex-wrap: wrap;
+    }
+    .footer-inner span { font-family: var(--mono); font-size: .72rem; color: var(--muted); }
+
+    /* ─── REDUCED MOTION ─────────────────────────────────── */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; }
+      .reveal { opacity: 1 !important; transform: none !important; }
+      .grid-bg { transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <a href="#main" class="skip-link">Skip to main content</a>
+
+  <!-- ══════════════════════════════════════════════════════
+       NAVIGATION
+  ══════════════════════════════════════════════════════ -->
+  <nav id="nav" aria-label="Primary navigation">
+    <div class="nav-inner">
+      <a href="#hero" class="nav-logo mono" aria-label="Karim Hashad — home">KH<span>.</span></a>
+
+      <ul class="nav-links" role="list">
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+
+      <div class="nav-ctas">
+        <a href="assets/Karim-Hashad-CV.pdf" download class="btn-ghost mono">Resume</a>
+        <a href="kareememad612005@gmail.com" class="btn-outline">Get in touch</a>
+      </div>
+
+      <button class="nav-toggle" id="navToggle" aria-label="Open navigation menu" aria-expanded="false" aria-controls="navMobile">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+    <div class="nav-mobile" id="navMobile" role="menu">
+      <a href="#about" role="menuitem">About</a>
+      <a href="#skills" role="menuitem">Skills</a>
+      <a href="#projects" role="menuitem">Projects</a>
+      <a href="#experience" role="menuitem">Experience</a>
+      <a href="#education" role="menuitem">Education</a>
+      <a href="#contact" role="menuitem">Contact</a>
+      <div class="nav-mobile-ctas">
+        <a href="assets/Karim-Hashad-CV.pdf" download class="m-resume">Resume</a>
+        <a href="kareememad612005@gmail.com" class="m-contact">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main">
+
+    <!-- ══════════════════════════════════════════════════════
+         HERO
+    ══════════════════════════════════════════════════════ -->
+    <section id="hero" aria-label="Introduction">
+      <div class="grid-bg" id="gridBg" aria-hidden="true"></div>
+      <div class="hero-orb hero-orb-1" aria-hidden="true"></div>
+      <div class="hero-orb hero-orb-2" aria-hidden="true"></div>
+
+      <div class="hero-inner">
+        <span class="hero-badge mono">Available — Unity · VR · AR · Multiplayer roles</span>
+
+        <h1 class="hero-name">
+          <span class="hero-name-solid">Karim</span>
+          <span class="hero-name-outline" aria-hidden="true">Hashad</span>
+          <span class="sr-only">Hashad</span>
+        </h1>
+
+        <p class="hero-title mono">Unity Developer — VR / AR &amp; Multiplayer Specialist</p>
+
+        <p class="hero-tagline">
+          <strong>I build worlds you can step into.</strong>
+          <span class="hero-tagline-sub"><br>2+ years shipping VR/AR and multiplayer games — Meta Quest, Google Play, and Unity 6 prototypes.</span>
+        </p>
+
+        <div class="hero-stats" aria-label="Key stats">
+          <div>
+            <div class="hero-stat-val mono">2+</div>
+            <div class="hero-stat-lbl">Years Experience</div>
+          </div>
+          <div>
+            <div class="hero-stat-val mono">3+</div>
+            <div class="hero-stat-lbl">Projects Built</div>
+          </div>
+          <div>
+            <div class="hero-stat-val mono">1</div>
+            <div class="hero-stat-lbl">App on Play Store</div>
+          </div>
+        </div>
+
+        <div class="hero-ctas">
+          <a href="#projects" class="btn-primary">
+            Watch My Projects
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a href="assets/Karim-Hashad-CV.pdf" download class="btn-secondary">
+            Download Resume
+          </a>
+          <a href="kareememad612005@gmail.com" class="btn-link">Contact ›</a>
+        </div>
+
+        <div class="hero-scroll" aria-hidden="true">
+          <span>Scroll</span>
+          <div class="hero-scroll-line"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════
+         ABOUT
+    ══════════════════════════════════════════════════════ -->
+    <section id="about" class="section" aria-labelledby="about-heading">
+      <div class="container">
+        <div class="reveal">
+          <div class="section-label"><span>About</span></div>
+          <div class="about-grid">
+            <div>
+              <h2 id="about-heading" class="about-heading">Engineering immersion, <em>one frame at a time.</em></h2>
+              <div class="about-text">
+                <p>Unity developer with 2+ years of hands-on experience shipping VR, AR, and multiplayer projects — from XR interaction systems to networked physics to gameplay prototypes built solo in Unity 6.</p>
+                <p>My core strength is XR: I design interaction systems with the XR Interaction Toolkit, sync real-time state across headsets with Photon PUN2 and Netcode for GameObjects, and optimize render pipelines to hold 72+ FPS on standalone Meta Quest hardware. I've taken an AR application through its full lifecycle to a live Google Play Store release.</p>
+                <p>Backend is my second strength, not an afterthought — I build the ASP.NET Core APIs and database layers that production apps run on, so I can own a feature end-to-end: client, network layer, and server. I graduated in Computer Science &amp; AI from Benha University in 2024 and volunteer as a technical instructor at the IEEE Student Branch.</p>
+                <p>What I'm looking for: a Unity, XR, or multiplayer gameplay role where shipping polished, performant interactive experiences is the whole job.</p>
+              </div>
+            </div>
+
+            <div class="facts-card">
+              <h3>Quick facts</h3>
+              <div class="fact-row"><span class="fact-label">Location</span><span class="fact-value">Cairo, Egypt</span></div>
+              <div class="fact-row"><span class="fact-label">Experience</span><span class="fact-value">2+ years</span></div>
+              <div class="fact-row"><span class="fact-label">Degree</span><span class="fact-value">B.Sc. Computer Science &amp; AI</span></div>
+              <div class="fact-row"><span class="fact-label">Graduated</span><span class="fact-value">2024 — Benha University</span></div>
+              <div class="fact-row"><span class="fact-label">Deployed to</span><span class="fact-value">Google Play Store</span></div>
+              <div class="fact-row"><span class="fact-label">English</span><span class="fact-value">B2 — Upper Intermediate</span></div>
+              <div class="facts-links">
+                <a href="https://github.com/KarimEmad17" target="_blank" rel="noopener noreferrer" class="facts-link">GitHub</a>
+                <a href="https://www.linkedin.com/in/karim-hashad-a592b31bb/" target="_blank" rel="noopener noreferrer" class="facts-link">LinkedIn</a>
+                <a href="assets/Karim-Hashad-CV.pdf" download class="facts-link cyan">Resume ↓</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════
+         SKILLS
+    ══════════════════════════════════════════════════════ -->
+    <section id="skills" class="section section-alt" aria-labelledby="skills-heading">
+      <div class="container">
+        <div class="reveal">
+          <div class="section-label"><span>Technical Skills</span></div>
+          <h2 id="skills-heading" class="section-heading">The stack behind the experience.</h2>
+          <p class="section-sub">XR and core Unity development first — that's where I spend most of my time and do my strongest work.</p>
+
+          <div class="skills-grid" id="skillsGrid">
+
+            <div class="skill-card featured">
+              <div class="skill-card-header">
+                <span class="skill-card-icon" aria-hidden="true">🥽</span>
+                <span class="skill-card-title">XR &amp; VR/AR Development</span>
+                <span class="skill-badge">Core focus</span>
+              </div>
+              <div class="skill-items">
+                <div class="skill-entry" data-level="88"><div class="skill-item-name"><span>XR Interaction Toolkit</span><span class="skill-item-pct">88%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" role="progressbar" aria-valuenow="88" aria-valuemin="0" aria-valuemax="100" aria-label="XR Interaction Toolkit proficiency"></div></div></div>
+                <div class="skill-entry" data-level="85"><div class="skill-item-name"><span>AR Foundation / ARCore</span><span class="skill-item-pct">85%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" aria-label="AR Foundation proficiency"></div></div></div>
+                <div class="skill-entry" data-level="85"><div class="skill-item-name"><span>Meta Quest 2 &amp; 3 (standalone)</span><span class="skill-item-pct">85%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" aria-label="Meta Quest proficiency"></div></div></div>
+                <div class="skill-entry" data-level="82"><div class="skill-item-name"><span>Photon PUN2</span><span class="skill-item-pct">82%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" role="progressbar" aria-valuenow="82" aria-valuemin="0" aria-valuemax="100" aria-label="Photon PUN2 proficiency"></div></div></div>
+                <div class="skill-entry" data-level="75"><div class="skill-item-name"><span>Photon Fusion (working knowledge)</span><span class="skill-item-pct">75%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" aria-label="Photon Fusion proficiency"></div></div></div>
+                <div class="skill-entry" data-level="80"><div class="skill-item-name"><span>Hand Tracking &amp; Locomotion Systems</span><span class="skill-item-pct">80%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" aria-label="Hand Tracking proficiency"></div></div></div>
+              </div>
+            </div>
+
+            <div class="skill-card featured">
+              <div class="skill-card-header">
+                <span class="skill-card-icon" aria-hidden="true">🎮</span>
+                <span class="skill-card-title">Core Unity &amp; Gameplay</span>
+                <span class="skill-badge">Core focus</span>
+              </div>
+              <div class="skill-items">
+                <div class="skill-entry" data-level="90"><div class="skill-item-name"><span>Unity Engine (incl. Unity 6)</span><span class="skill-item-pct">90%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" aria-label="Unity Engine proficiency"></div></div></div>
+                <div class="skill-entry" data-level="92"><div class="skill-item-name"><span>C# Gameplay Programming</span><span class="skill-item-pct">92%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" role="progressbar" aria-valuenow="92" aria-valuemin="0" aria-valuemax="100" aria-label="C# proficiency"></div></div></div>
+                <div class="skill-entry" data-level="82"><div class="skill-item-name"><span>Netcode for GameObjects</span><span class="skill-item-pct">82%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" role="progressbar" aria-valuenow="82" aria-valuemin="0" aria-valuemax="100" aria-label="Netcode for GameObjects proficiency"></div></div></div>
+                <div class="skill-entry" data-level="78"><div class="skill-item-name"><span>Mirror Networking</span><span class="skill-item-pct">78%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" role="progressbar" aria-valuenow="78" aria-valuemin="0" aria-valuemax="100" aria-label="Mirror Networking proficiency"></div></div></div>
+                <div class="skill-entry" data-level="83"><div class="skill-item-name"><span>Performance Profiling &amp; Optimization</span><span class="skill-item-pct">83%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" role="progressbar" aria-valuenow="83" aria-valuemin="0" aria-valuemax="100" aria-label="Performance Profiling proficiency"></div></div></div>
+                <div class="skill-entry" data-level="80"><div class="skill-item-name"><span>Addressable Asset System</span><span class="skill-item-pct">80%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" aria-label="Addressable Asset System proficiency"></div></div></div>
+                <div class="skill-entry" data-level="78"><div class="skill-item-name"><span>Scriptable Objects &amp; Object Pooling</span><span class="skill-item-pct">78%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" role="progressbar" aria-valuenow="78" aria-valuemin="0" aria-valuemax="100" aria-label="Scriptable Objects proficiency"></div></div></div>
+              </div>
+            </div>
+
+            <div class="skill-card">
+              <div class="skill-card-header">
+                <span class="skill-card-icon" aria-hidden="true">⚙️</span>
+                <span class="skill-card-title">Backend &amp; APIs</span>
+              </div>
+              <div class="skill-items">
+                <div class="skill-entry" data-level="80"><div class="skill-item-name"><span>ASP.NET Core</span><span class="skill-item-pct">80%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" aria-label="ASP.NET Core proficiency"></div></div></div>
+                <div class="skill-entry" data-level="78"><div class="skill-item-name"><span>Entity Framework Core</span><span class="skill-item-pct">78%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" role="progressbar" aria-valuenow="78" aria-valuemin="0" aria-valuemax="100" aria-label="Entity Framework proficiency"></div></div></div>
+                <div class="skill-entry" data-level="82"><div class="skill-item-name"><span>RESTful API Design</span><span class="skill-item-pct">82%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" role="progressbar" aria-valuenow="82" aria-valuemin="0" aria-valuemax="100" aria-label="RESTful API proficiency"></div></div></div>
+                <div class="skill-entry" data-level="78"><div class="skill-item-name"><span>JWT Authentication</span><span class="skill-item-pct">78%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" role="progressbar" aria-valuenow="78" aria-valuemin="0" aria-valuemax="100" aria-label="JWT Authentication proficiency"></div></div></div>
+                <div class="skill-entry" data-level="75"><div class="skill-item-name"><span>SQL Server</span><span class="skill-item-pct">75%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" aria-label="SQL Server proficiency"></div></div></div>
+              </div>
+            </div>
+
+            <div class="skill-card">
+              <div class="skill-card-header">
+                <span class="skill-card-icon" aria-hidden="true">🏗️</span>
+                <span class="skill-card-title">Architecture &amp; Tools</span>
+              </div>
+              <div class="skill-items">
+                <div class="skill-entry" data-level="88"><div class="skill-item-name"><span>OOP &amp; SOLID Principles</span><span class="skill-item-pct">88%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" role="progressbar" aria-valuenow="88" aria-valuemin="0" aria-valuemax="100" aria-label="OOP proficiency"></div></div></div>
+                <div class="skill-entry" data-level="82"><div class="skill-item-name"><span>Design Patterns (Singleton, Observer, Factory, Pool)</span><span class="skill-item-pct">82%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" role="progressbar" aria-valuenow="82" aria-valuemin="0" aria-valuemax="100" aria-label="Design Patterns proficiency"></div></div></div>
+                <div class="skill-entry" data-level="85"><div class="skill-item-name"><span>Git &amp; Version Control</span><span class="skill-item-pct">85%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" aria-label="Git proficiency"></div></div></div>
+                <div class="skill-entry" data-level="80"><div class="skill-item-name"><span>Cross-Platform Deployment (Android, Quest)</span><span class="skill-item-pct">80%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" aria-label="Cross-Platform proficiency"></div></div></div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════
+         PROJECTS
+    ══════════════════════════════════════════════════════ -->
+    <section id="projects" class="section" aria-labelledby="projects-heading">
+      <div class="container">
+        <div class="reveal">
+          <div class="section-label"><span>Featured Projects</span></div>
+          <h2 id="projects-heading" class="section-heading">Things I've shipped and built.</h2>
+          <p class="section-sub">VR multiplayer, Unity 6 gameplay prototypes, a live Play Store AR app, and the backend infrastructure behind production games.</p>
+
+          <div class="projects-list">
+
+            <!-- PROJECT 1: BattleField Shooter -->
+            <article class="proj-card" aria-labelledby="proj-bf-title">
+              <div class="proj-media" data-mp4="assets/battlefield.mp4" data-webm="assets/battlefield.webm" data-poster="assets/battlefield-poster.jpg" data-alt="Top-down Unity 6 tactical shooter prototype: player character aims and fires at targets in a gray-box level with cover geometry, ragdoll hit reactions visible.">
+                <img src="assets/battlefield-poster.jpg" alt="BattleField tactical shooter prototype — Unity 6 top-down gameplay with player and target dummies in a gray-box level" loading="lazy" decoding="async" />
+                <span class="proj-media-badge"><span class="dot"></span>Gameplay capture</span>
+              </div>
+              <div class="proj-accent-bar" style="background:#ff4d4d"></div>
+              <div class="proj-body">
+                <div class="proj-meta">
+                  <div>
+                    <p class="proj-role">Unity Gameplay Programmer</p>
+                    <h3 id="proj-bf-title" class="proj-title">BattleField — Third-Person Action Shooter</h3>
+                  </div>
+                  <div class="proj-links">
+                    <a href="https://github.com/KarimEmad17/BattleField" target="_blank" rel="noopener noreferrer" class="proj-link">
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+                      Source Code
+                    </a>
+                  </div>
+                </div>
+                <p class="proj-tagline">Solo-built FPS/TPS mechanics in Unity 6 — dual-wield weapons, object pooling, VFX pipeline, and fire-rate management from scratch.</p>
+                <p class="proj-overview">A gameplay-programming prototype built in Unity 6 demonstrating core TPS systems — dual-wield weapon logic, raycasted shooting, fire-rate management, ragdoll hit reactions, a VFX pipeline, and a collision-response system — inside a gray-box level built for mechanic iteration, not art polish. Full breakdown &amp; demo on GitHub.</p>
+                <div class="proj-tech">
+                  <span class="proj-pill" style="border-color:rgba(255,77,77,.35);color:#ff4d4d;background:rgba(255,77,77,.06)">Unity 6</span>
+                  <span class="proj-pill" style="border-color:rgba(255,77,77,.35);color:#ff4d4d;background:rgba(255,77,77,.06)">C#</span>
+                  <span class="proj-pill" style="border-color:rgba(255,77,77,.35);color:#ff4d4d;background:rgba(255,77,77,.06)">Dual-Wield Weapon System</span>
+                  <span class="proj-pill" style="border-color:rgba(255,77,77,.35);color:#ff4d4d;background:rgba(255,77,77,.06)">Object Pooling</span>
+                  <span class="proj-pill" style="border-color:rgba(255,77,77,.35);color:#ff4d4d;background:rgba(255,77,77,.06)">VFX Pipeline</span>
+                  <span class="proj-pill" style="border-color:rgba(255,77,77,.35);color:#ff4d4d;background:rgba(255,77,77,.06)">Ragdoll Physics</span>
+                  <span class="proj-pill" style="border-color:rgba(255,77,77,.35);color:#ff4d4d;background:rgba(255,77,77,.06)">Win/Mac/Linux</span>
+                </div>
+                <button class="proj-expand-btn" aria-expanded="false" aria-controls="details-bf">
+                  <span>+ Challenges, contributions &amp; results</span>
+                  <span class="arrow" aria-hidden="true">▾</span>
+                </button>
+                <div class="proj-details" id="details-bf">
+                  <div class="proj-details-grid">
+                    <div class="proj-detail-section">
+                      <h4>Challenges</h4>
+                      <ul>
+                        <li><span class="proj-detail-dot" style="background:#ff4d4d"></span>Building responsive dual-wield aim-and-fire feel from scratch without a third-party shooter template.</li>
+                        <li><span class="proj-detail-dot" style="background:#ff4d4d"></span>Getting ragdoll hit-reaction physics to read clearly from a top-down/third-person camera angle.</li>
+                        <li><span class="proj-detail-dot" style="background:#ff4d4d"></span>Managing object pooling for bullets and VFX without allocation spikes breaking frame pacing.</li>
+                      </ul>
+                    </div>
+                    <div class="proj-detail-section">
+                      <h4>My Contributions</h4>
+                      <ul>
+                        <li><span class="proj-detail-dot" style="background:#ff4d4d"></span>Programmed the complete dual-wield shoot loop — raycasting, hit detection, fire-rate timers — in custom C#.</li>
+                        <li><span class="proj-detail-dot" style="background:#ff4d4d"></span>Implemented an object pool for bullets and VFX particles to eliminate GC pressure during combat.</li>
+                        <li><span class="proj-detail-dot" style="background:#ff4d4d"></span>Set up ragdoll physics hit responses using Unity animation rigging for readable feedback.</li>
+                        <li><span class="proj-detail-dot" style="background:#ff4d4d"></span>Validated cross-platform builds for Windows, Mac, and Linux from a single Unity 6 project.</li>
+                      </ul>
+                    </div>
+                    <div class="proj-detail-section">
+                      <h4>Results</h4>
+                      <ul>
+                        <li><span class="proj-detail-dot" style="background:#ff4d4d"></span>Playable core combat loop in Unity 6 (6000.3.7f1) running on DX11.</li>
+                        <li><span class="proj-detail-dot" style="background:#ff4d4d"></span>Validated cross-platform build pipeline across three target OSes.</li>
+                        <li><span class="proj-detail-dot" style="background:#ff4d4d"></span>Weapon, pooling, and VFX systems reusable as a foundation for a full production TPS.</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <!-- PROJECT 3: Kitchen Chaos -->
+            <article class="proj-card" aria-labelledby="proj-kc-title">
+              <!-- Media strip: title screenshot + gameplay video side by side -->
+              <div class="kc-media-strip">
+                <div class="kc-screenshot">
+                  <img
+                    src="assets/kitchen-title.png"
+                    alt="Kitchen Chaos title screen showing the game logo with colorful snowman-shaped characters"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+                <div class="proj-media kc-video" data-mp4="assets/kitchen.mp4" data-webm="assets/kitchen.webm" data-poster="assets/kitchen-poster.jpg" data-alt="Top-down Unity kitchen simulation gameplay: player moves between counters chopping and plating food orders against a countdown timer, with a live recipe queue UI.">
+                  <img src="assets/kitchen-poster.jpg" alt="Kitchen Chaos gameplay — top-down Unity cooking simulation" loading="lazy" decoding="async" />
+                  <span class="proj-media-badge"><span class="dot"></span>Gameplay</span>
+                </div>
+              </div>
+              <div class="proj-accent-bar" style="background:#ffb020"></div>
+              <div class="proj-body">
+                <div class="proj-meta">
+                  <div>
+                    <p class="proj-role">Unity Gameplay Programmer</p>
+                    <h3 id="proj-kc-title" class="proj-title">Kitchen Chaos — Cooking / Time-Management Game</h3>
+                  </div>
+                  <div class="proj-links">
+                    <a href="https://github.com/KarimEmad17/Kitchen-Chaos" target="_blank" rel="noopener noreferrer" class="proj-link">
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+                      Source Code
+                    </a>
+                  </div>
+                </div>
+                <p class="proj-tagline">Timed order fulfillment, recipe state logic, interaction system, and live game-state UI under pressure.</p>
+                <p class="proj-overview">A single-player timed kitchen-management loop — chop, cook, plate, and deliver recipes against an incoming order queue before time runs out. Full recipe-state logic (raw → chopped → cooked → plated), a Scriptable Object recipe system, interaction state machine, and a real-time UI bound directly to game state. Full breakdown &amp; demo on GitHub.</p>
+                <div class="proj-tech">
+                  <span class="proj-pill" style="border-color:rgba(255,176,32,.35);color:#ffb020;background:rgba(255,176,32,.06)">Unity</span>
+                  <span class="proj-pill" style="border-color:rgba(255,176,32,.35);color:#ffb020;background:rgba(255,176,32,.06)">C#</span>
+                  <span class="proj-pill" style="border-color:rgba(255,176,32,.35);color:#ffb020;background:rgba(255,176,32,.06)">State Machines</span>
+                  <span class="proj-pill" style="border-color:rgba(255,176,32,.35);color:#ffb020;background:rgba(255,176,32,.06)">Scriptable Objects</span>
+                  <span class="proj-pill" style="border-color:rgba(255,176,32,.35);color:#ffb020;background:rgba(255,176,32,.06)">Interaction System</span>
+                  <span class="proj-pill" style="border-color:rgba(255,176,32,.35);color:#ffb020;background:rgba(255,176,32,.06)">UI / Audio Systems</span>
+                  <span class="proj-pill" style="border-color:rgba(255,176,32,.35);color:#ffb020;background:rgba(255,176,32,.06)">Recipe &amp; Scoring System</span>
+                </div>
+                <button class="proj-expand-btn" aria-expanded="false" aria-controls="details-kc">
+                  <span>+ Challenges, contributions &amp; results</span>
+                  <span class="arrow" aria-hidden="true">▾</span>
+                </button>
+                <div class="proj-details" id="details-kc">
+                  <div class="proj-details-grid">
+                    <div class="proj-detail-section">
+                      <h4>Challenges</h4>
+                      <ul>
+                        <li><span class="proj-detail-dot" style="background:#ffb020"></span>Modeling recipe state (raw → chopped → cooked → plated) so any combination resolves correctly.</li>
+                        <li><span class="proj-detail-dot" style="background:#ffb020"></span>Keeping the order-queue UI synced to game state in real time without frame drops.</li>
+                        <li><span class="proj-detail-dot" style="background:#ffb020"></span>Tuning counter-interaction and movement feel so timed pressure feels fair, not fiddly.</li>
+                      </ul>
+                    </div>
+                    <div class="proj-detail-section">
+                      <h4>My Contributions</h4>
+                      <ul>
+                        <li><span class="proj-detail-dot" style="background:#ffb020"></span>Designed a Scriptable Object–driven recipe system so new dishes can be added without new code.</li>
+                        <li><span class="proj-detail-dot" style="background:#ffb020"></span>Built the interaction state machine for chopping, cooking, and plating stations.</li>
+                        <li><span class="proj-detail-dot" style="background:#ffb020"></span>Implemented the live order-queue and countdown-timer UI bound directly to game state.</li>
+                        <li><span class="proj-detail-dot" style="background:#ffb020"></span>Tuned player movement and station-interaction timing through iterative playtesting.</li>
+                      </ul>
+                    </div>
+                    <div class="proj-detail-section">
+                      <h4>Results</h4>
+                      <ul>
+                        <li><span class="proj-detail-dot" style="background:#ffb020"></span>Complete, replayable core loop: incoming orders, prep stations, delivery counter.</li>
+                        <li><span class="proj-detail-dot" style="background:#ffb020"></span>Recipe system that scales to new dishes with zero gameplay-code changes.</li>
+                        <li><span class="proj-detail-dot" style="background:#ffb020"></span>Responsive real-time UI showing order queue and time pressure with no visible frame drops.</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <!-- PROJECT 4: AR Google Play -->
+            <article class="proj-card" aria-labelledby="proj-ar-title">
+              <div class="proj-media">
+                <div class="proj-media-placeholder" aria-label="Play Store screenshots coming soon">
+                  <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+                  <p>Add Play Store screenshots</p>
+                </div>
+              </div>
+              <div class="proj-accent-bar" style="background:#7b2fff"></div>
+              <div class="proj-body">
+                <div class="proj-meta">
+                  <div>
+                    <p class="proj-role">Unity AR Developer</p>
+                    <h3 id="proj-ar-title" class="proj-title">AR Application — Google Play Store</h3>
+                  </div>
+                  <div class="proj-links">
+                    <!-- <a href="#" class="proj-link">Play Store</a> -->
+                  </div>
+                </div>
+                <p class="proj-tagline">Augmented reality shipped to real users — plane detection, object placement, and Addressable content delivery on Android.</p>
+                <p class="proj-overview">A production AR application deployed on the Google Play Store, leveraging AR Foundation for real-world plane detection, 3D object placement, and interactive augmented experiences across a wide range of Android devices.</p>
+                <div class="proj-tech">
+                  <span class="proj-pill" style="border-color:rgba(123,47,255,.35);color:#9b6fff;background:rgba(123,47,255,.06)">Unity</span>
+                  <span class="proj-pill" style="border-color:rgba(123,47,255,.35);color:#9b6fff;background:rgba(123,47,255,.06)">AR Foundation</span>
+                  <span class="proj-pill" style="border-color:rgba(123,47,255,.35);color:#9b6fff;background:rgba(123,47,255,.06)">Google ARCore</span>
+                  <span class="proj-pill" style="border-color:rgba(123,47,255,.35);color:#9b6fff;background:rgba(123,47,255,.06)">Addressable System</span>
+                  <span class="proj-pill" style="border-color:rgba(123,47,255,.35);color:#9b6fff;background:rgba(123,47,255,.06)">C#</span>
+                  <span class="proj-pill" style="border-color:rgba(123,47,255,.35);color:#9b6fff;background:rgba(123,47,255,.06)">Google Play Console</span>
+                </div>
+                <button class="proj-expand-btn" aria-expanded="false" aria-controls="details-ar">
+                  <span>+ Challenges, contributions &amp; results</span>
+                  <span class="arrow" aria-hidden="true">▾</span>
+                </button>
+                <div class="proj-details" id="details-ar">
+                  <div class="proj-details-grid">
+                    <div class="proj-detail-section">
+                      <h4>Challenges</h4>
+                      <ul>
+                        <li><span class="proj-detail-dot" style="background:#7b2fff"></span>Stable real-world object placement across varied real-world lighting and surfaces on low-to-mid Android hardware.</li>
+                        <li><span class="proj-detail-dot" style="background:#7b2fff"></span>Keeping the initial APK download light while shipping rich AR content.</li>
+                        <li><span class="proj-detail-dot" style="background:#7b2fff"></span>Passing Google Play store compliance and review requirements.</li>
+                      </ul>
+                    </div>
+                    <div class="proj-detail-section">
+                      <h4>My Contributions</h4>
+                      <ul>
+                        <li><span class="proj-detail-dot" style="background:#7b2fff"></span>Implemented plane detection and 3D object placement using AR Foundation and ARCore APIs.</li>
+                        <li><span class="proj-detail-dot" style="background:#7b2fff"></span>Set up Addressable Asset System for on-demand content loading, cutting base APK size.</li>
+                        <li><span class="proj-detail-dot" style="background:#7b2fff"></span>Optimized draw calls, texture compression, and LOD settings for Android GPU performance.</li>
+                        <li><span class="proj-detail-dot" style="background:#7b2fff"></span>Owned the full deployment pipeline through Google Play Console to production release.</li>
+                      </ul>
+                    </div>
+                    <div class="proj-detail-section">
+                      <h4>Results</h4>
+                      <ul>
+                        <li><span class="proj-detail-dot" style="background:#7b2fff"></span>Shipped to the Google Play Store — approved and deployed to real end users.</li>
+                        <li><span class="proj-detail-dot" style="background:#7b2fff"></span>Smooth frame rates on target Android hardware through aggressive asset optimization.</li>
+                        <li><span class="proj-detail-dot" style="background:#7b2fff"></span>Reduced APK size and download friction through Addressable-based content delivery.</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+
+
+          </div><!-- /projects-list -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════
+         EXPERIENCE
+    ══════════════════════════════════════════════════════ -->
+    <section id="experience" class="section section-alt" aria-labelledby="experience-heading">
+      <div class="container">
+        <div class="reveal">
+          <div class="section-label"><span>Experience</span></div>
+          <h2 id="experience-heading" class="section-heading">Where I've built things.</h2>
+
+          <div class="exp-timeline">
+
+            <div class="exp-item">
+              <div class="exp-dot" aria-hidden="true"></div>
+              <div class="exp-card">
+                <div class="exp-header">
+                  <h3 class="exp-role">Unity Developer — VR/AR Specialist</h3>
+                  <span class="exp-duration">2+ Years</span>
+                </div>
+                <p class="exp-company">Freelance / Contract Projects · 2024 – Present</p>
+                <ul class="exp-highlights">
+                  <li class="exp-highlight"><span class="exp-bullet" aria-hidden="true">›</span>Shipped an AR application to the Google Play Store, owning the full lifecycle from prototype to store-approved production release.</li>
+                  <li class="exp-highlight"><span class="exp-bullet" aria-hidden="true">›</span>Built real-time multiplayer VR sessions with Photon PUN2 — synchronized player transforms, object ownership, and shared-state events across concurrent headset users with minimal perceived latency.</li>
+                  <li class="exp-highlight"><span class="exp-bullet" aria-hidden="true">›</span>Held a stable 72+ FPS on standalone Meta Quest 2/3 hardware by profiling and cutting draw calls, shader complexity, and physics overhead using Unity Profiler.</li>
+                  <li class="exp-highlight"><span class="exp-bullet" aria-hidden="true">›</span>Engineered the Addressable Asset System pipeline across multiple projects, cutting initial build size and enabling on-demand asset streaming to reduce load times on memory-constrained hardware.</li>
+                  <li class="exp-highlight"><span class="exp-bullet" aria-hidden="true">›</span>Designed core VR interaction mechanics — grab, throw, teleport locomotion, hand-tracked UI — using XR Interaction Toolkit, tuned for comfort and reduced motion sickness.</li>
+                  <li class="exp-highlight"><span class="exp-bullet" aria-hidden="true">›</span>Partnered directly with designers and stakeholders to translate requirements into SOLID-compliant, modular Unity codebases for long-term maintainability.</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="exp-item">
+              <div class="exp-dot" aria-hidden="true"></div>
+              <div class="exp-card">
+                <div class="exp-header">
+                  <h3 class="exp-role">Volunteer Technical Instructor</h3>
+                  <span class="exp-duration">Volunteer</span>
+                </div>
+                <p class="exp-company">IEEE Student Branch · During University</p>
+                <ul class="exp-highlights">
+                  <li class="exp-highlight"><span class="exp-bullet" aria-hidden="true">›</span>Designed and delivered hands-on workshops on Embedded Systems and C programming fundamentals, translating industry-standard hardware and software concepts into beginner-friendly learning experiences.</li>
+                  <li class="exp-highlight"><span class="exp-bullet" aria-hidden="true">›</span>Mentored students 1-on-1 on programming fundamentals and embedded systems concepts, supporting independent project work from first script to working prototype.</li>
+                </ul>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════
+         EDUCATION
+    ══════════════════════════════════════════════════════ -->
+    <section id="education" class="section" aria-labelledby="education-heading">
+      <div class="container">
+        <div class="reveal">
+          <div class="section-label"><span>Education</span></div>
+          <h2 id="education-heading" class="section-heading">Foundation of the craft.</h2>
+
+          <div class="edu-card">
+            <div class="edu-icon" aria-hidden="true">🎓</div>
+            <div>
+              <h3 class="edu-degree">Bachelor of Computer Science and Artificial Intelligence</h3>
+              <p class="edu-faculty">Faculty of Computer Science and Artificial Intelligence</p>
+              <p class="edu-meta">Benha University · Egypt · Graduated 2024</p>
+              <p class="edu-courses-label">Relevant coursework</p>
+              <div class="edu-courses">
+                <span class="edu-course">Data Structures &amp; Algorithms</span>
+                <span class="edu-course">Object-Oriented Programming</span>
+                <span class="edu-course">Computer Graphics</span>
+                <span class="edu-course">Artificial Intelligence</span>
+                <span class="edu-course">Database Systems</span>
+                <span class="edu-course">Software Engineering</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════
+         CONTACT
+    ══════════════════════════════════════════════════════ -->
+    <section id="contact" class="section section-alt" aria-labelledby="contact-heading">
+      <div class="container">
+        <div class="reveal">
+          <div class="section-label"><span>Contact</span></div>
+          <div class="contact-inner">
+            <h2 id="contact-heading" class="contact-heading">Let's build something <em>immersive.</em></h2>
+            <p class="contact-sub">Open to Unity, XR, VR/AR, and multiplayer gameplay roles — full-time, contract, or freelance. If you're building something in spatial computing or real-time multiplayer, let's talk.</p>
+            <div class="contact-ctas">
+              <a href="mailto:kareememad612005@gmail.com" class="btn-primary">
+                Email me
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M3 9h12M10 5l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+              <a href="assets/Karim-Hashad-CV.pdf" download class="btn-secondary">Download resume</a>
+            </div>
+            <p class="contact-email-hint">kareememad612005@gmail.com · +20 10 3239 2337</p>
+            <div class="contact-social">
+              <a href="https://github.com/KarimEmad17" target="_blank" rel="noopener noreferrer" class="social-link">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+                GitHub
+              </a>
+              <a href="https://www.linkedin.com/in/karim-hashad-a592b31bb/" target="_blank" rel="noopener noreferrer" class="social-link">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                LinkedIn
+              </a>
+              <a href="tel:+201032392337" class="social-link">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+                +20 10 3239 2337
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ══════════════════════════════════════════════════════
+       FOOTER
+  ══════════════════════════════════════════════════════ -->
+  <footer>
+    <div class="footer-inner">
+      <span>© <span id="year"></span> Karim Hashad — All rights reserved</span>
+      <span>Cairo, Egypt · kareememad612005@gmail.com</span>
+    </div>
+  </footer>
+
+  <script>
+    'use strict';
+
+    /* ── Year ──────────────────────────────────────────── */
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    /* ── Nav scroll state ──────────────────────────────── */
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 40);
+    }, { passive: true });
+
+    /* ── Mobile menu ───────────────────────────────────── */
+    const toggle = document.getElementById('navToggle');
+    const mobileMenu = document.getElementById('navMobile');
+    toggle.addEventListener('click', () => {
+      const open = toggle.classList.toggle('open');
+      mobileMenu.classList.toggle('open', open);
+      toggle.setAttribute('aria-expanded', open);
+      toggle.setAttribute('aria-label', open ? 'Close navigation menu' : 'Open navigation menu');
+    });
+    mobileMenu.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        toggle.classList.remove('open');
+        mobileMenu.classList.remove('open');
+        toggle.setAttribute('aria-expanded', false);
+      });
+    });
+
+    /* ── Hero parallax (respects reduced motion) ───────── */
+    const gridBg = document.getElementById('gridBg');
+    const orb1   = document.querySelector('.hero-orb-1');
+    const orb2   = document.querySelector('.hero-orb-2');
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (!prefersReducedMotion) {
+      document.addEventListener('mousemove', (e) => {
+        const x = (e.clientX / window.innerWidth  - 0.5) * 18;
+        const y = (e.clientY / window.innerHeight - 0.5) * 18;
+        gridBg.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
+        orb1.style.transform   = `translate(${x * 0.55}px, ${y * 0.55}px)`;
+        orb2.style.transform   = `translate(${x * -0.35}px, ${y * -0.35}px)`;
+      }, { passive: true });
+    }
+
+    /* ── Scroll reveal ─────────────────────────────────── */
+    const revealObs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          revealObs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
+    /* ── Skill bars animate on scroll ─────────────────── */
+    const barObs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          const fills = e.target.querySelectorAll('.skill-entry');
+          fills.forEach((entry, i) => {
+            const level = entry.dataset.level;
+            const fill  = entry.querySelector('.skill-bar-fill');
+            setTimeout(() => { fill.style.width = level + '%'; }, i * 80);
+          });
+          barObs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    document.querySelectorAll('.skill-card').forEach(c => barObs.observe(c));
+
+    /* ── Lazy video load ───────────────────────────────── */
+    // Videos are NOT loaded until the project card scrolls near viewport.
+    // This keeps initial page weight at just the two poster JPGs (~64KB total).
+    const videoObs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (!e.isIntersecting) return;
+        const media = e.target;
+        const mp4   = media.dataset.mp4;
+        const webm  = media.dataset.webm;
+        const poster = media.dataset.poster;
+        const alt   = media.dataset.alt || '';
+        if (!mp4) return;
+
+        const vid = document.createElement('video');
+        vid.setAttribute('aria-label', alt);
+        vid.autoplay  = true;
+        vid.loop      = true;
+        vid.muted     = true;
+        vid.playsInline = true;
+        vid.preload   = 'none';
+        if (poster) vid.poster = poster;
+
+        if (webm) {
+          const s = document.createElement('source');
+          s.src = webm; s.type = 'video/webm';
+          vid.appendChild(s);
+        }
+        const s2 = document.createElement('source');
+        s2.src = mp4; s2.type = 'video/mp4';
+        vid.appendChild(s2);
+
+        // Clear placeholder/poster image, insert video
+        media.innerHTML = '';
+        media.appendChild(vid);
+
+        // Badge
+        const badge = document.createElement('span');
+        badge.className = 'proj-media-badge';
+        badge.innerHTML = '<span class="dot"></span>Gameplay capture';
+        media.appendChild(badge);
+
+        vid.play().catch(() => {});
+        videoObs.unobserve(media);
+
+        // Pause/resume on viewport
+        const playObs = new IntersectionObserver(([pe]) => {
+          if (pe.isIntersecting) vid.play().catch(() => {});
+          else vid.pause();
+        }, { threshold: 0.3 });
+        playObs.observe(media);
+      });
+    }, { rootMargin: '200px' });
+
+    document.querySelectorAll('.proj-media[data-mp4]').forEach(m => videoObs.observe(m));
+
+    /* ── Project expand/collapse ───────────────────────── */
+    document.querySelectorAll('.proj-expand-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const id      = btn.getAttribute('aria-controls');
+        const details = document.getElementById(id);
+        const open    = details.classList.toggle('open');
+        btn.classList.toggle('open', open);
+        btn.setAttribute('aria-expanded', open);
+        btn.querySelector('span:first-child').textContent =
+          open ? '— Hide details' : '+ Challenges, contributions & results';
+      });
+    });
+
+    /* ── Smooth scroll for same-page anchors ───────────── */
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', (e) => {
+        const target = document.querySelector(a.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
